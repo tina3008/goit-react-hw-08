@@ -1,33 +1,35 @@
-import ContactForm from "./ContactForm/ContactForm";
-import SearchBox from "./SearchBox/SearchBox";
-import ContactList from "./ContactList/ContactList";
-import { fetchContacts } from "../redux/contactsOps";
-import { selectError, selectLoading } from "../redux/selectors";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import ErrorMessage from "./ErrorMessage/ErrorMessage";
-import Loader from "./Loader/Loader";
+import { Route, Routes } from "react-router-dom";
+import { useState, lazy, Suspense } from "react";
+import Layout from "./Layout/Layout.jsx";
+// import Navigation from "../components/Navigation/Navigation.jsx";
+import Loader from "../components/Loader/Loader.jsx";
 
-function App() {
-  const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoading);
-  const isError = useSelector(selectError);
+const HomePage = lazy(() => import("../pages/HomePage/HomePage.jsx"));
+const NotFoundPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
+const ContactPage = lazy(() => import("../pages/ContactsPage/ContactsPage.jsx"));
+const RegisterPage = lazy(() => import("../pages/RegisterPage/RegisterPage"));
+const LoginPage = lazy(() => import("../pages/LoginPage/LoginPage"));
+// const TasksPage = lazy(() => import("../pages/TasksPage/TasksPage"));
 
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+import css from "./App.module.css";
+
+export default function App() {
+  const [loading, setLoading] = useState(false);
+
   return (
-    <>
-      <div>
-        <h1>Phonebook</h1>
-        <ContactForm />
-        <SearchBox />
-        <ContactList />
-        {isLoading && <Loader>Loading message</Loader>}
-        {isError && <ErrorMessage />}
-      </div>
-    </>
+    <Layout>
+      {/* <Navigation /> */}
+
+      {loading && <Loader />}
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/contacts" element={<ContactPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
+    </Layout>
   );
 }
-
-export default App;
