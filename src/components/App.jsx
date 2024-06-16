@@ -3,7 +3,8 @@ import { useState, lazy, Suspense, useEffect } from "react";
 import Layout from "./Layout/Layout.jsx";
 import Loader from "../components/Loader/Loader.jsx";
 import RestrictedRoute from "./RestrictedRoute.jsx";
-import PrivateRoute from './PrivateRoute.jsx';
+import PrivateRoute from "./PrivateRoute.jsx";
+import css from "./App.module.css";
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage.jsx"));
 const NotFoundPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
@@ -13,7 +14,6 @@ const ContactPage = lazy(() =>
 const RegisterPage = lazy(() => import("../pages/RegisterPage/RegisterPage"));
 const LoginPage = lazy(() => import("../pages/LoginPage/LoginPage"));
 
-import css from "./App.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { refreshUser } from "../redux/auth/operations.js";
 import { selectIsRefreshing } from "../redux/auth/selectors.js";

@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Loader from "../../components/Loader/Loader";
+import css from './ContactPage.module.css'
+import PageTitle from "../../components/PageTitle/PageTitle";
 
 export default function ContactPage() {
   const dispatch = useDispatch();
@@ -19,7 +21,8 @@ export default function ContactPage() {
   return (
     <>
       <div>
-        <h1>Phonebook</h1>
+        <PageTitle>Phonebook </PageTitle>
+      
         <ContactForm />
         <SearchBox />
         <ContactList />
