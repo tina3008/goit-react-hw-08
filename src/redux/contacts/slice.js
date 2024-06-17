@@ -1,4 +1,4 @@
-import { createSelector, createSlice, nanoid } from "@reduxjs/toolkit";
+import { createSelector, createSlice} from "@reduxjs/toolkit";
 import { fetchContacts, addContact, deleteContact } from "./operations";
 import { selectContacts } from "./selectors";
 import { selectNameFilter } from "../filters/selectors";
@@ -77,13 +77,5 @@ export const visibleContacts = createSelector(
     });
   }
 );
-
-// export const visibleContacts = state => {
-//   const contacts = selectContacts(state);
-//   const filtersContact = selectNameFilter(state);
-//   return contacts.filter((contact) =>
-//     contact.name.toLowerCase().includes(filtersContact.toLowerCase())
-//   );
-// }
 
 export const contactReducer = contactsSlice.reducer;
