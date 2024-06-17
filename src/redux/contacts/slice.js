@@ -67,10 +67,14 @@ const contactsSlice = createSlice({
 
 export const visibleContacts = createSelector(
   [selectContacts, selectNameFilter],
-  (contacts, filtersContact) => {
-    return contacts.filter((contact) =>
-      contact.name.toLowerCase().includes(filtersContact.toLowerCase())
-    );
+  (contacts, selectNameFilter) => {
+    return contacts.filter((contact) => {
+      const filterName = contact.name
+        .toLowerCase()
+        .includes(selectNameFilter.toLowerCase());
+      const filterNumber = contact.number.includes(selectNameFilter);
+      return filterName || filterNumber;
+    });
   }
 );
 
