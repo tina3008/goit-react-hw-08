@@ -23,6 +23,7 @@ export default function ContactForm() {
       .required("Required"),
   });
         
+  
   const initialContact = {
     name: "",
     number: "",
@@ -30,21 +31,29 @@ export default function ContactForm() {
 
   const handleSubmit = (values, actions) => {
     dispatch(addContact(values))
-      // .unwrap()
-      // .then(() => {
-      //    toast.success("The contact has been added", {
-      //      style: {
-      //        background: "green",
-      //      },
-      //    });
-      // })
-      // .catch(() => {
-      //   toast.error("Was error, please try again", {
-      //     style: {
-      //       background: "red",
-      //     },
-      //   });
-      // });
+      .unwrap()
+      .then(() => {
+           toast("The contact has been added", {           
+             style: { background: "green" },
+             containerStyle: {
+               top: 150,
+               left: 20,
+               bottom: 20,
+               right: 20,
+             },
+           });
+      })
+      .catch(() => {
+        toast("Was error, please try again", {         
+          style: { background: "red" },
+          containerStyle: {
+            top: 150,
+            left: 20,
+            bottom: 20,
+            right: 20,
+          },
+        });
+      });
     
 
     actions.resetForm();
@@ -56,7 +65,7 @@ export default function ContactForm() {
       onSubmit={handleSubmit}
       validationSchema={validationControl}
     >
-      <Form Form className={css.formStyle}>
+      <Form className={css.formStyle}>
         <div className={css.fialdStyle}>
           <label htmlFor={nameFieldId}>Name</label>
           <Field
@@ -67,6 +76,7 @@ export default function ContactForm() {
           />
           <ErrorMessage className={css.err} name="name" component="span" />
         </div>
+
         <div className={css.fialdStyle}>
           <label htmlFor={numberFieldId}>Number</label>
           <Field
@@ -77,6 +87,7 @@ export default function ContactForm() {
           />
           <ErrorMessage className={css.err} name="number" component="span" />
         </div>
+
         <button type="submit" className={css.btn}>
           Add contact
         </button>

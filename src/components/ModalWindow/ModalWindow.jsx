@@ -47,7 +47,17 @@ export default function ModalWindow()  {
       dispatch(deleteContact(isModalDelete))
         .unwrap()
         .then(() => {
-          toast("The contact has been deleted");
+          toast("The contact has been deleted", {
+            duration: 4000,
+            position: "top-center",
+            style: { background: "red" },
+            containerStyle:{
+            top: 150,
+            left: 20,
+            bottom: 20,
+            right: 20,
+          },
+          });
         })
         .catch(() => {
           toast("Contact  deleted failed!");
@@ -72,7 +82,7 @@ export default function ModalWindow()  {
           No
         </button>
 
-        <Toaster
+        {/* <Toaster
           toastOptions={{
             style: {
               background: "red",
@@ -85,7 +95,7 @@ export default function ModalWindow()  {
             bottom: 20,
             right: 20,
           }}
-        />
+        /> */}
       </div>
     </Modal>
   );
