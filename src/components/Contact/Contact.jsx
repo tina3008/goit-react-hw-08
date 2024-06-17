@@ -2,16 +2,19 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
 import css from "./Contact.module.css";
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contacts/operations";
-import toast, { Toaster } from "react-hot-toast";
-// import Button from "@mui/material/Button";
+// import { deleteContact } from "../../redux/contacts/operations";
+// import toast, { Toaster } from "react-hot-toast";
+import { openModal } from "../../redux/modal/slice";
+
 
 export default function ContactItem({ contact: { id, name, number } }) {
   const dispatch = useDispatch();
  
   const handleDelete = () => {
-    dispatch(deleteContact(id));
-    toast("The contact has been deleted");
+    // dispatch(deleteContact(id));
+    // toast("The contact has been deleted");
+
+    dispatch(openModal(id));
   };
   return (
     <div className={css.fullContact}>
@@ -24,10 +27,10 @@ export default function ContactItem({ contact: { id, name, number } }) {
         </p>
       </div>
 
-      <button className={css.btn} onClick={handleDelete} >
+      <button className={css.btn} onClick={handleDelete}>
         Delete
       </button>
-      <Toaster
+      {/* <Toaster
         toastOptions={{
           style: {
             background: "red",
@@ -40,7 +43,7 @@ export default function ContactItem({ contact: { id, name, number } }) {
           bottom: 20,
           right: 20,
         }}
-      />
+      /> */}
     </div>
   );
 }

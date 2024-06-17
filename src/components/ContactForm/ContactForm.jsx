@@ -2,6 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useId } from "react";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
+
 import { addContact } from "../../redux/contacts/operations";
 import { useDispatch } from "react-redux";
 import css from "./ContactForm.module.css";
@@ -21,19 +22,30 @@ export default function ContactForm() {
       .max(12, "Too long")
       .required("Required"),
   });
-
+        
   const initialContact = {
     name: "",
     number: "",
   };
 
   const handleSubmit = (values, actions) => {
-    dispatch(addContact(values));
-    toast("The contact has been added", {
-        style: {
-          background: "green",
-        },
-      });
+    dispatch(addContact(values))
+      // .unwrap()
+      // .then(() => {
+      //    toast.success("The contact has been added", {
+      //      style: {
+      //        background: "green",
+      //      },
+      //    });
+      // })
+      // .catch(() => {
+      //   toast.error("Was error, please try again", {
+      //     style: {
+      //       background: "red",
+      //     },
+      //   });
+      // });
+    
 
     actions.resetForm();
   };

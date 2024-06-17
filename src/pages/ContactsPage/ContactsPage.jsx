@@ -9,6 +9,7 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Loader from "../../components/Loader/Loader";
 import css from './ContactPage.module.css'
 import PageTitle from "../../components/PageTitle/PageTitle";
+import ModalWindow from "../../components/ModalWindow/ModalWindow";
 
 export default function ContactPage() {
   const dispatch = useDispatch();
@@ -22,12 +23,12 @@ export default function ContactPage() {
     <>
       <div>
         <PageTitle>Phonebook </PageTitle>
-      
         <ContactForm />
         <SearchBox />
         <ContactList />
         {isLoading && <Loader>Loading message</Loader>}
         {isError && <ErrorMessage />}
+       < ModalWindow/>
       </div>
     </>
   );
