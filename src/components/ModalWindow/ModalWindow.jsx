@@ -47,17 +47,18 @@ export default function ModalWindow()  {
       dispatch(deleteContact(isModalDelete))
         .unwrap()
         .then(() => {
-          toast("The contact has been deleted", {
-            duration: 4000,
-            position: "top-center",
-            style: { background: "red" },
-            containerStyle:{
-            top: 150,
-            left: 20,
-            bottom: 20,
-            right: 20,
-          },
-          });
+          // toast("The contact has been deleted", {
+          //   duration: 4000,
+          //   position: "top-center",
+          //   style: { background: "red" },
+          //   containerStyle:{
+          //   top: 150,
+          //   left: 20,
+          //   bottom: 20,
+          //   right: 20,
+          // },
+          // });
+           toast.success("The contact has been deleted");
         })
         .catch(() => {
           toast("Contact  deleted failed!");
