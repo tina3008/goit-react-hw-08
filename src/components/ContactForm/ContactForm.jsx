@@ -35,12 +35,7 @@ export default function ContactForm() {
       .then(() => {
            toast("The contact has been added", {           
              style: { background: "green" },
-             containerStyle: {
-               top: 150,
-               left: 20,
-               bottom: 20,
-               right: 20,
-             },
+             position:"top-center",
            });
       })
       .catch(() => {

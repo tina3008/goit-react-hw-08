@@ -25,10 +25,11 @@ export default function ContactPage() {
         <PageTitle>Phonebook </PageTitle>
         <ContactForm />
         <SearchBox />
-        <ContactList />
         {isLoading && <Loader>Loading message</Loader>}
+        <ContactList />
+
         {isError && <ErrorMessage />}
-       < ModalWindow/>
+        <ModalWindow />
       </div>
     </>
   );
