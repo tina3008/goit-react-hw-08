@@ -7,12 +7,7 @@ import { addContact } from "../../redux/contacts/operations";
 import { useDispatch } from "react-redux";
 import css from "./ContactForm.module.css";
 
-export default function ContactForm() {
-  const dispatch = useDispatch();
-  const nameFieldId = useId();
-  const numberFieldId = useId();
-
-  const validationControl = Yup.object().shape({
+  export const validationControl = Yup.object().shape({
     name: Yup.string()
       .min(3, "Too Short!")
       .max(50, "Too Long!")
@@ -22,8 +17,13 @@ export default function ContactForm() {
       .max(12, "Too long")
       .required("Required"),
   });
+
+export default function ContactForm() {
+  const dispatch = useDispatch();
+  const nameFieldId = useId();
+  const numberFieldId = useId();
+
         
-  
   const initialContact = {
     name: "",
     number: "",
