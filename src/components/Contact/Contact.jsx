@@ -19,16 +19,38 @@ export default function ContactItem({ contact: { id, name, number } }) {
     dispatch(openModal(id));
   };
 
-  const handleChange = ({values:{name, number}}) => {    
-    dispatch(changeContact(id, name, number));
-  };
+  // const handleChange = ({ name, number } ) => {   
+  
+  //   dispatch(changeContact(id, name, number));
+  // };
+  const handleChange = (values) => {
 
+    dispatch(changeContact({id,values:{name, number}}))
+      .unwrap()
+      .then(() => {
+        toast("The contact has been changed", {
+          style: { background: "white" },
+          position: "top-center",
+        });
+      })
+      .catch(() => {
+        toast("Was error, please try again", {
+          style: { background: "red" },
+          containerStyle: {
+            top: 150,
+            left: 20,
+            bottom: 20,
+            right: 20,
+          },
+        });
+      });
+  }
+  
  const initialContact = {
    name: name,
    number: number,
  };
- const nameFieldId = useId();
- const numberFieldId = useId();
+
   return (
     <Formik
       initialValues={initialContact}
@@ -40,7 +62,7 @@ export default function ContactItem({ contact: { id, name, number } }) {
           <label htmlFor={name}>Name</label>
           <Field
             className={css.field}
-            id={nameFieldId}
+            id={name}
             type="text"
             name="name"
           />
@@ -48,10 +70,10 @@ export default function ContactItem({ contact: { id, name, number } }) {
         </div>
 
         <div className={css.fialdStyle}>
-          <label htmlFor={numberFieldId}>Number</label>
+          <label htmlFor={number}>Number</label>
           <Field
             className={css.field}
-            id={numberFieldId}
+            id={number}
             type="tel"
             name="number"
           />
@@ -59,7 +81,7 @@ export default function ContactItem({ contact: { id, name, number } }) {
         </div>
 
         <div className={css.btnBlock}>
-          <button type="submit" className={css.btn}>
+          <button className={css.btn} type="submit">
             Change
           </button>
           <button className={css.btnDel} onClick={handleDelete}>
