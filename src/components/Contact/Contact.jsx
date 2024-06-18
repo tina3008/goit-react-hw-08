@@ -35,7 +35,7 @@ const { name, number } = values;
       })
       .catch(() => {
         toast("Was error, please try again", {
-          style: { background: "red" },
+          style: { background: "#fb30c8" },
           containerStyle: {
             top: 150,
             left: 20,
@@ -60,23 +60,13 @@ const { name, number } = values;
       <Form className={css.formStyle}>
         <div className={css.fialdStyle}>
           <label htmlFor={name}>Name</label>
-          <Field
-            className={css.field}
-            id={name}
-            type="text"
-            name="name"
-          />
+          <Field className={css.field} id={name} type="text" name="name" />
           <ErrorMessage className={css.err} name="name" component="span" />
         </div>
 
         <div className={css.fialdStyle}>
           <label htmlFor={number}>Number</label>
-          <Field
-            className={css.field}
-            id={number}
-            type="tel"
-            name="number"
-          />
+          <Field className={css.field} id={number} type="tel" name="number" />
           <ErrorMessage className={css.err} name="number" component="span" />
         </div>
 
@@ -84,7 +74,7 @@ const { name, number } = values;
           <button className={css.btn} type="submit">
             Change
           </button>
-          <button className={css.btnDel} onClick={handleDelete}>
+          <button className={css.btnDel} type="button" onClick={handleDelete}>
             Delete
           </button>
         </div>

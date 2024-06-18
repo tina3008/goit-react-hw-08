@@ -33,14 +33,14 @@ export default function ContactForm() {
     dispatch(addContact(values))
       .unwrap()
       .then(() => {
-           toast("The contact has been added", {           
-             style: { background: "green" },
-             position:"top-center",
+           toast("The contact has been added", {
+             style: { background: "#a477e0" },
+             position: "top-center",
            });
       })
       .catch(() => {
-        toast("Was error, please try again", {         
-          style: { background: "red" },
+        toast("Was error, please try again", {
+          style: { background: "#fb30c8" },
           containerStyle: {
             top: 150,
             left: 20,
