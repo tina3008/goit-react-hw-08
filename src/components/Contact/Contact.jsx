@@ -24,12 +24,12 @@ export default function ContactItem({ contact: { id, name, number } }) {
   //   dispatch(changeContact(id, name, number));
   // };
   const handleChange = (values) => {
-
-    dispatch(changeContact({id,values:{name, number}}))
+const { name, number } = values;
+    dispatch(changeContact({ id, name, number }))
       .unwrap()
       .then(() => {
-        toast("The contact has been changed", {
-          style: { background: "white" },
+        toast.success("The contact has been changed", {
+          style: { background: "white", color: "black" },
           position: "top-center",
         });
       })
